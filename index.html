@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="visual.css">
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="visual.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  </head>
 
-<body>
-  <div class="container">
-    <video class="input_video" data-device-id="0"></video>
-    <canvas class="output_canvas" width="500px" height="500px"></canvas>
-  </div>
-  <div id="camera-info">
-    <p id="num-cameras"></p>
-    <p id="current-camera"></p>
-    <p id="other-cameras"></p>
-  </div>
-  <button id="switch-camera-button">Switch Camera</button>
-  <button id="show-caminfo-button">Show Camera Info</button>
-  <script src="main.js"></script>
-</body>
+  <body>
+    <div class="container">
+      <video class="input_video" data-device-id="0"></video>
+      <canvas class="output_canvas" width="640px" height="480px"></canvas>
+    </div>
+    <div id="camera-info">
+      <p id="current-camera"></p>
+    </div>
+    <select id="webcam-list"></select>
+    <button id="switch-cam">Switch Camera</button>
+    <button id="stop-cam">Stop Camera</button>
+    <script src="main.js"></script>
+  </body>
 </html>
