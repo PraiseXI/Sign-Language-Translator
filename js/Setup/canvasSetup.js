@@ -14,11 +14,9 @@ function preload() {
 }
 
 function setup() {
-  mic = new p5.AudioIn();
-  mic.start();
-  getAudioContext().resume();
-
   createCanvas(800, 650);
+  resultP = createP('waiting...');
+  resultP.style('font-size', '32pt');
   // Create the video
   video = createCapture(VIDEO);
   video.size(800, 650);
@@ -30,13 +28,16 @@ function setup() {
 }
 
 function draw() {
+  //hide display
   background(0);
   // Draw the video
   image(flippedVideo, 0, 0);
-
-  // Draw the label
-  fill(255);
-  textSize(50);
-  textAlign(CENTER);
-  text(label, width / 2, height - 4);
+  
+  /*
+   // Draw the label
+   fill(100);
+   textSize(50);
+   textAlign(CENTER);
+   text(label, width / 2, height - 4);
+   */
 }
