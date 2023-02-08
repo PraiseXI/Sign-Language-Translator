@@ -14,6 +14,7 @@ function preload() {
 }
 
 function setup() {
+  console.clear()
   createCanvas(800, 650);
   resultP = createP('waiting...');
   resultP.style('font-size', '32pt');
