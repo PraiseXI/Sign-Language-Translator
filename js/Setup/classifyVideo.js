@@ -1,4 +1,6 @@
 let currentLetter = [];
+let sentence = [];
+let words = 0;
 // Get a prediction for the current video frame
 function classifyVideo() {
     flippedVideo = ml5.flipImage(video);
@@ -17,24 +19,23 @@ function getResult(error, results) {
         location.reload();
         return;
     }
-    while (currentLetter.length < 50) {
-        currentLetter.push(results[0].label);
-        classifyVideo();
-        return results;
-    }
-
-    try {
+    //loop for 3 words
+    do {
+        while (currentLetter.length < 50) {
+            currentLetter.push(results[0].label);
+            words++
+            classifyVideo();
+            return results;
+        }
         //check mostCommon letter
         let result = mostCommon(currentLetter);
-        console.log("result:" + result)
-        setOutputWord(result)
+        console.log("result:" + result);
+        sentence.push(result);
+        //reset current letter
         currentLetter = [];
-        return results;
-    }
-    catch (error) {
-        console.log(error);
-    }
-
+        classifyVideo();
+    } while (words <= 150)
+    setOutputWord(sentence);
 }
 
 function mostCommon(arr) {
@@ -54,10 +55,10 @@ function mostCommon(arr) {
 }
 
 function setOutputWord(word) {
-    console.log("setting output word")
+    console.log("setting output word");
     var label = document.getElementById("letter");
     label.innerHTML = word;
-    console.log("label.innerHTML")
+    console.log(label.innerHTML);
 }
 
 function sleep(milliseconds) {
@@ -68,10 +69,9 @@ function sleep(milliseconds) {
     } while (currentDate - date < milliseconds);
 }
 
-//TODO: MAKE LOOP AGAIN TO DETECT WORD
-//TODO: CREATE A NEW SENTENCE ARRAY
-//TODO: OUTPUT SENTENCE 
+//TODO: REMOVE COMMAS FROM SENTENCE
 //TODO: CREATE START AND STOP BUTTON THAT WORKS WITH THE SPACE BAR
+//TODO: ADD FUNCTION TO PROCESS SENTENCE
 //TODO: CREATE DELAY FROM WHEN STARTED TO WHEN DETECTING BUT STILL LOADING EVERYTHINg
 //TODO: do not display text if it is class 7
 //TODO: remove empty from sentence array
