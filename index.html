@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      button {
+        font-size: 24px;
+        padding: 12px 24px;
+      }
+      select {
+        font-size: 16px;
+        padding: 8px;
+        height: 40px;
+        width: 300px;
+      }
+    </style>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <select id="webcam-list"></select>
+    <div class="buttons">
+      <button id="stop-cam">Stop Camera</button>
+      <button id="play-cam">Play Camera</button>
+    </div>
+    <label id="result">Letter:</label>
+    <script src="setup.js"></script>
+    <script src="buttons.js"></script>
+    <script src="classify.js"></script>
+  </body>
+</html>

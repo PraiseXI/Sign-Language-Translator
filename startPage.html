@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      button {
+        font-size: 24px;
+        padding: 12px 24px;
+      }
+      select {
+        font-size: 16px;
+        padding: 8px;
+      }
+      #video-element {
+        transform: scaleX(-1);
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="window.location.href='index.html'">Start</button>
+  </body>
+  <select id="webcam-list"></select>
+
+  <script src="./startPage.js"></script>
+  <!-- <script src="C:/Users/Praise.Olawuni/OneDrive - Liverpool John Moores University/Year 3/[6100COMP] YR PROJECT/New/Sign-Language-Translator/js/Setup/startPage.js"></script> -->
+
+  <video id="video-element"></video>
+</html>
+<!-- TODO: ADD PRELOADER-->

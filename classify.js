@@ -1,6 +1,13 @@
 let currentLetter = [];
 let sentence = [];
 let words = 0;
+
+// Get a prediction for the current video frame
+function classifyVideo() {
+    flippedVideo = ml5.flipImage(video);
+    classifier.classify(flippedVideo, gotResult);
+}
+/*
 // Get a prediction for the current video frame
 function classifyVideo() {
     flippedVideo = ml5.flipImage(video);
@@ -10,7 +17,22 @@ function classifyVideo() {
         //currentWord = checkLetters(results[0].label);
     });
 }
+*/
 
+function gotResult(error, results) {
+    // If there is an error
+    if (error) {
+        console.error(error);
+        return;
+    }
+    // The results are in an array ordered by confidence.
+    // console.log(results[0]);
+    label = results[0].label;
+    // Classifiy again!
+    classifyVideo();
+}
+
+/*
 
 function getResult(error, results) {
     if (error) {
@@ -19,11 +41,12 @@ function getResult(error, results) {
         location.reload();
         return;
     }
+    let gotSentence = false;
     //loop for 3 words
-    do {
+    while (words <= 150 && gotSentence == false) {
         while (currentLetter.length < 50) {
             currentLetter.push(results[0].label);
-            words++
+            words++;
             classifyVideo();
             return results;
         }
@@ -34,8 +57,10 @@ function getResult(error, results) {
         //reset current letter
         currentLetter = [];
         classifyVideo();
-    } while (words <= 150)
+    }
     setOutputWord(sentence);
+    gotSentence = true;
+    sentenceComplete();
 }
 
 function mostCommon(arr) {
@@ -75,3 +100,14 @@ function sleep(milliseconds) {
 //TODO: CREATE DELAY FROM WHEN STARTED TO WHEN DETECTING BUT STILL LOADING EVERYTHINg
 //TODO: do not display text if it is class 7
 //TODO: remove empty from sentence array
+
+function sentenceComplete() {
+    //window.location.href = "output.html";
+    //go to other page
+    //remove video
+    //stop classification
+    //display word
+    //do nothing until restart button is pressed
+}
+
+*/
