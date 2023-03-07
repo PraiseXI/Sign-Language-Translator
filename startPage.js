@@ -1,3 +1,5 @@
+let currentStream;
+
 async function requestCameraPermission() {
     const permissionStatus = await navigator.permissions.query({ name: 'camera' });
     if (permissionStatus.state === 'granted') {
@@ -59,7 +61,27 @@ function displayVideoStream() {
 function storeCurrentCamera(currentCam) {
     localStorage.setItem('cam-ID', currentCam);
 }
+
+function nextPageButton() {
+    stopCam();
+    window.location.href='index.html'
+
+}
+
+function stopCam() {
+    // Get the video element
+    const videoElement = document.getElementById('video-element');
+
+    // Display the video stream in the video element
+    let stream = videoElement.srcObject
+    stream.getTracks().forEach(track => {
+        track.stop();
+      });
+}
+
 requestCameraPermission();
 
 const webcamList = document.getElementById('webcam-list');
 webcamList.addEventListener('change', displayVideoStream);
+const startButton = document.getElementById('start');
+startButton.addEventListener('click', nextPageButton);
