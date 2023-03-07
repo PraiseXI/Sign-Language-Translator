@@ -1,11 +1,16 @@
+//TODO: STORE THE MOST COMMON LETTERS IN ARRAY
+//TODO: ONCE TRANSLATED PAUSE VIDEO AND SHOW ON SCREEN THE WORD
+
+
 let currentLetter = [];
 let sentence = [];
 let words = 0;
+const result = document.getElementById("result");
 
 // Get a prediction for the current video frame
 function classifyVideo() {
     flippedVideo = ml5.flipImage(video);
-    classifier.classify(flippedVideo, gotResult);
+    classifier.classify(flippedVideo, getResult);
 }
 /*
 // Get a prediction for the current video frame
@@ -18,12 +23,12 @@ function classifyVideo() {
     });
 }
 */
-
-function gotResult(error, results) {
+/*
+function getResult(error, results) {
     // If there is an error
     if (error) {
         console.error(error);
-        return;
+        video.stop()
     }
     // The results are in an array ordered by confidence.
     // console.log(results[0]);
@@ -31,27 +36,30 @@ function gotResult(error, results) {
     // Classifiy again!
     classifyVideo();
 }
-
-/*
+*/
 
 function getResult(error, results) {
     if (error) {
         alert(error);
         console.error(error);
-        location.reload();
-        return;
+        video.stop()
     }
     let gotSentence = false;
     //loop for 3 words
-    while (words <= 150 && gotSentence == false) {
-        while (currentLetter.length < 50) {
-            currentLetter.push(results[0].label);
+    while (words <= 500 && gotSentence == false) {
+        while (currentLetter.length < 100 /*takes 100 classifications*/) {
+            //console.log(currentLetter)
+            //console.log(results)
+            currentLetter.push(results[0].label /*takes most confident one with is [0]*/);
             words++;
             classifyVideo();
             return results;
         }
         //check mostCommon letter
-        let result = mostCommon(currentLetter);
+        let result = mostCommonWord(currentLetter);
+        label = "word = " + result
+        // TODO: SORT OUT NUMBER i label = "word " + i + " = " + result
+        //TODO: refactor result to make into proper sentence
         console.log("result:" + result);
         sentence.push(result);
         //reset current letter
@@ -61,9 +69,11 @@ function getResult(error, results) {
     setOutputWord(sentence);
     gotSentence = true;
     sentenceComplete();
+
+    //TODO: do something for complete sentence - confirm page?
 }
 
-function mostCommon(arr) {
+function mostCommonWord(arr) {
     let frequency = {};
     let max = 0;
     let result;
@@ -76,23 +86,29 @@ function mostCommon(arr) {
             result = val;
         }
     }
+    console.log("the most common letter is: " + result)
     return result;
 }
 
 function setOutputWord(word) {
     console.log("setting output word");
-    var label = document.getElementById("letter");
-    label.innerHTML = word;
-    console.log(label.innerHTML);
+
+    result.innerHTML = "The sentence that was translated is: " + word;
+    console.log(result.innerHTML);
 }
 
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-        currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
+function sentenceComplete() {
+    video.stop()
+    console.log("success")
+    //remove video
+    //stop classification
+    //display word
+    //do nothing until restart button is pressed
 }
+/*
+//TODO: DISPLAY CURENT WORD ON SCREEN -> THEN DISPLAY SENTENCE
+//TODO: Add a retry button
+//TODO: CREATE CREATE A NEW AGE FOR OUTPUT
 
 //TODO: REMOVE COMMAS FROM SENTENCE
 //TODO: CREATE START AND STOP BUTTON THAT WORKS WITH THE SPACE BAR
@@ -101,13 +117,6 @@ function sleep(milliseconds) {
 //TODO: do not display text if it is class 7
 //TODO: remove empty from sentence array
 
-function sentenceComplete() {
-    //window.location.href = "output.html";
-    //go to other page
-    //remove video
-    //stop classification
-    //display word
-    //do nothing until restart button is pressed
-}
+
 
 */
