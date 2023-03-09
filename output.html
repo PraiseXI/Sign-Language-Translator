@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Output Page</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      button {
+        font-size: 24px;
+        padding: 12px 24px;
+      }
+
+      h1 {
+        font-size: 5em;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <label>Your translation is:</label>
+    <h1 contenteditable = "true" id="translation">Your translation will appear here</h1>
+    <label>If this is wrong please press to change</label>
+    <button id="restart">Restart</button>
+  </body>
+  <script src="./output.js"></script>
+</html>
