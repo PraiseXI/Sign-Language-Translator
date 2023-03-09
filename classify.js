@@ -1,10 +1,7 @@
-//TODO: STORE THE MOST COMMON LETTERS IN ARRAY
-//TODO: ONCE TRANSLATED PAUSE VIDEO AND SHOW ON SCREEN THE WORD
-
-
 let currentLetter = [];
 let sentence = [];
 let words = 0;
+let i = 0;
 const result = document.getElementById("result");
 
 // Get a prediction for the current video frame
@@ -42,7 +39,7 @@ function getResult(error, results) {
     if (error) {
         alert(error);
         console.error(error);
-        video.stop()
+        video.stop();
     }
     let gotSentence = false;
     //loop for 3 words
@@ -53,11 +50,13 @@ function getResult(error, results) {
             currentLetter.push(results[0].label /*takes most confident one with is [0]*/);
             words++;
             classifyVideo();
+            i++;
             return results;
         }
         //check mostCommon letter
         let result = mostCommonWord(currentLetter);
-        label = "word = " + result
+        label = "word" + i + "= " + result;
+
         // TODO: SORT OUT NUMBER i label = "word " + i + " = " + result
         //TODO: refactor result to make into proper sentence
         console.log("result:" + result);
@@ -86,11 +85,15 @@ function mostCommonWord(arr) {
             result = val;
         }
     }
-    console.log("the most common letter is: " + result)
+    console.log("the most common letter is: " + result);
     return result;
 }
 
 function setOutputWord(word) {
+
+    console.log("cleaning sentence")
+    word = cleanSentence(word);
+
     console.log("setting output word");
 
     result.innerHTML = "The sentence that was translated is: " + word;
@@ -98,19 +101,30 @@ function setOutputWord(word) {
 }
 
 function sentenceComplete() {
-    video.stop()
-    console.log("success")
+    video.stop();
+    console.log("success");
     //remove video
     //stop classification
     //display word
     //do nothing until restart button is pressed
 }
+
+function cleanSentence(sentence) {
+    //convert to string
+    let str = sentence.toString();
+
+    str = str.replace(/,/g, " ");
+    str = str.replace(/Letter/g, "");
+
+    return str;
+
+}
 /*
+TODO: AFTER DETECTION REMOVE ANY CLASS 7 FROM WORD - IF IT IS CLASS 7 THEN SKIP
 //TODO: DISPLAY CURENT WORD ON SCREEN -> THEN DISPLAY SENTENCE
 //TODO: Add a retry button
 //TODO: CREATE CREATE A NEW AGE FOR OUTPUT
 
-//TODO: REMOVE COMMAS FROM SENTENCE
 //TODO: CREATE START AND STOP BUTTON THAT WORKS WITH THE SPACE BAR
 //TODO: ADD FUNCTION TO PROCESS SENTENCE
 //TODO: CREATE DELAY FROM WHEN STARTED TO WHEN DETECTING BUT STILL LOADING EVERYTHINg
