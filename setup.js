@@ -30,7 +30,7 @@ function setup() {
     video.hide();
 
     flippedVideo = ml5.flipImage(video);
-
+    //TODO: ADD delay in detecting
     classifyVideo();
 }
 
@@ -144,7 +144,3 @@ async function requestCameraPermission() {
     }
 }
 
-function test() {
-    alert(cameraList.value);
-    //TODO: REMOVE
-}
