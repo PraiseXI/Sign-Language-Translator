@@ -12,7 +12,7 @@ function switchCamera() {
                 }
             });
             video.size(640, 520);
-            video.hide()
+            video.hide();
         })
         .catch(error => {
             console.error(error);
@@ -24,15 +24,23 @@ function switchCamera() {
 }
 
 function stopCamera() {
-    video.stop()
+    video.stop();
+    window.location.href = 'startPage.html';
 }
 function playCamera() {
-    video.play()
+    video.play();
 }
 
-
+//eventListeners
 const stopButton = document.getElementById('stop-cam');
 const playButton = document.getElementById('play-cam');
 cameraList.addEventListener('change', switchCamera);
 stopButton.addEventListener('click', stopCamera);
 playButton.addEventListener('click', playCamera);
+//stop camera with space bar
+document.addEventListener("keydown", function (event) {
+    if (event.code === "Space") {
+        // Create a button click event
+        stopCamera();
+    };
+});
