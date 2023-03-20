@@ -64,7 +64,7 @@ function storeCurrentCamera(currentCam) {
 
 function nextPageButton() {
     stopCam();
-    window.location.href='index.html'
+    window.location.href='translate.html'
 
 }
 

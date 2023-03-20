@@ -1,13 +1,14 @@
 const output = document.getElementById("translation");
-const sentence = localStorage.getItem('sentence')
+const sentence = localStorage.getItem('sentence');
 
 function restart() {
     window.location.href = 'startPage.html';
 }
 function setTranslation() {
-    output.innerHTML = sentence
+    output.innerHTML = sentence;
 }
-setTranslation()
+
+setTranslation();
 const restartButton = document.getElementById('restart');
 restartButton.addEventListener('click', restart);
 

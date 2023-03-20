@@ -36,10 +36,23 @@
     <div class="buttons">
       <button id="stop-cam">Stop Camera</button>
       <button id="play-cam">Play Camera</button>
+      <div id="google_translate_element"></div>
     </div>
     <label id="result">WAITING FOR SENTENCE...</label>
     <script src="setup.js"></script>
     <script src="buttons.js"></script>
     <script src="classify.js"></script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pagelanguage: "en" },
+          "google_translate_element"
+        );
+      }
+    </script>
   </body>
 </html>
