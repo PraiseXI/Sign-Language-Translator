@@ -42,12 +42,12 @@ function getResult(error, results) {
         video.stop();
     }
     let gotSentence = false;
-    //loop for 3 words
-    while (words <= 500 && gotSentence == false) {
-        while (currentLetter.length < 100 /*takes 100 classifications*/) {
-            //console.log(currentLetter)
-            //console.log(results)
-            currentLetter.push(results[0].label /*takes most confident one with is [0]*/);
+    //loop for 4 words
+    while (words <= 400 && gotSentence == false) {
+         //takes 100 classifications
+        while (currentLetter.length < 100) {
+            //takes most confident result at [0]
+            currentLetter.push(results[0].label );
             words++;
             classifyVideo();
             i++;
