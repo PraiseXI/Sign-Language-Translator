@@ -79,6 +79,13 @@ function stopCam() {
       });
 }
 
+function loadPage() {
+    document.getElementById('loading-screen').style.display = 'block';
+    setTimeout(function() {
+        window.location.href = 'page2.html';
+    }, 2000);
+}
+
 requestCameraPermission();
 
 const webcamList = document.getElementById('webcam-list');
