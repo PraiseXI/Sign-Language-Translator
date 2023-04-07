@@ -1,33 +1,24 @@
-/* center everything */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 body {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+  flex-direction: column;
 }
-
-/* style label and button */
-label {
-  font-size: 1.5rem;
-  margin-right: 1rem;
-}
-
 button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border-radius: 0.25rem;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+  font-size: 24px;
+  padding: 12px 24px;
 }
-
-/* style the translation */
-#translation {
-  font-size: 3rem;
-  margin-top: 2rem;
+select {
+  font-size: 16px;
+  padding: 8px;
 }
-
 #video-element {
   transform: scaleX(-1);
 }
+
