@@ -9,31 +9,6 @@ function classifyVideo() {
     flippedVideo = ml5.flipImage(video);
     classifier.classify(flippedVideo, getResult);
 }
-/*
-// Get a prediction for the current video frame
-function classifyVideo() {
-    flippedVideo = ml5.flipImage(video);
-    classify = classifier.classify(flippedVideo, (error, results) => {
-        getResult(error, results);
-        console.log(results[0].label);
-        //currentWord = checkLetters(results[0].label);
-    });
-}
-*/
-/*
-function getResult(error, results) {
-    // If there is an error
-    if (error) {
-        console.error(error);
-        video.stop()
-    }
-    // The results are in an array ordered by confidence.
-    // console.log(results[0]);
-    label = results[0].label;
-    // Classifiy again!
-    classifyVideo();
-}
-*/
 
 function getResult(error, results) {
     if (error) {
@@ -43,7 +18,7 @@ function getResult(error, results) {
     }
     let gotSentence = false;
     //loop for 4 words
-    while (words <= 400 && gotSentence == false) {
+    while (words <= 200 && gotSentence == false) {
          //takes 100 classifications
         while (currentLetter.length < 100) {
             //takes most confident result at [0]
