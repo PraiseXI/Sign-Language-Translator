@@ -30,7 +30,6 @@ function setup() {
     video.hide();
 
     flippedVideo = ml5.flipImage(video);
-    //TODO: ADD delay in detecting
     classifyVideo();
 }
 
@@ -140,7 +139,6 @@ async function requestCameraPermission() {
     } else {
         // Permission denied, show an error message
         alert('You must grant camera permission in order to use this app.');
-        //TODO: ERROR HELP Page
     }
 }
 
